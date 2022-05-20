@@ -19,16 +19,26 @@ function App() {
     const openai = new OpenAIApi(configuration);
 
     openai.createCompletion("text-curie-001", {
-      prompt: `Write a funny DJ name for ${formDataObj.name}`,
+      // prompt: `Suggest a funny DJ name for ${formDataObj.name}`,
+      prompt: `Suggest a funny DJ name 
+      name: Sonia
+      dj: DJ Slimy Spin Sonia
+      name: Fifi
+      dj: DJ Funky Fresh Fifi
+      name: Graeme
+      dj: Grizzly Graeme
+      name: ${formDataObj.name}
+      dj:`,
       temperature: 0.8,
       max_tokens: 64,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0
     }).then((response) => {
+      // add new posts to the beginning of the state area so that posts will be displayed newest to oldest
       setPosts((prev) => [{
-        heading: `${formDataObj.name}`,
-        response: `${response.data.choices[0].text}`
+        name: `${formDataObj.name}`,
+        dj: `${response.data.choices[0].text}`
       }, ...prev]);
 
     }).catch((error) => {
@@ -43,14 +53,14 @@ function App() {
           <input 
             type="text" 
             name="name"
-            placeholder='Enter your name here'
+            placeholder='Enter a name here'
           />
         </label>
         <button type="submit">Submit</button>
       </form>
       <ul>
         {posts.map((post, index) => {
-          return <li key={index}>{post.heading}: {post.response}</li>
+          return <li key={index}>{post.name}: {post.dj}</li>
         })}
       </ul>
     </div>
