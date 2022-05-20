@@ -2,10 +2,10 @@ import { useState } from 'react';
 const { Configuration, OpenAIApi } = require("openai");
 
 function App() {
-  const [post, setPost] = useState({
+  const [posts, setPosts] = useState([{
     heading: "Response will be shown here",
     response: "... await the response"
-  });
+  }]);
   
   const handleSubmit = (event) => { 
     event.preventDefault();
@@ -29,10 +29,14 @@ function App() {
       frequency_penalty: 0,
       presence_penalty: 0,
     }).then((response) => {
-      setPost({
-        heading: `AI DJ Name Suggestions for: ${formDataObj.name}`,
+      setPosts((prev) => [...prev, {
+        heading: `${formDataObj.name}`,
         response: `${response.data.choices[0].text}`
-      })
+      }]);
+      // setPost({
+      //   heading: `AI DJ Name Suggestions for: ${formDataObj.name}`,
+      //   response: `${response.data.choices[0].text}`
+      // })
     }).catch((error) => {
       console.log("ERROR", error)
     })
@@ -50,8 +54,13 @@ function App() {
         </label>
         <button type="submit">Submit</button>
       </form>
-      <h1>{post.heading}</h1>
-      <h4>{post.response}</h4>
+      <ul>
+        {posts.map((post, index) => {
+          return <li key={index}>{post.heading}: {post.response}</li>
+        })}
+      </ul>
+      <h1>{posts.heading}</h1>
+      <h4>{posts.response}</h4>
     </div>
   );
 }
