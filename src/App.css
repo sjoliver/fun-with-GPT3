@@ -3,7 +3,11 @@
   height: 100vh;
   color: #f4f5f7;
   background-color: #004da6;
-  font-family: fantasy;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#header {
+  font-size: 40px;
 }
 
 .name-input {
@@ -14,10 +18,10 @@
   box-shadow: none;
   border: none;
   padding-left: 16px;
-  font-size: 14px;
+  font-size: 16px;
   color: #737373;
-  height: 32px;
-  width: 275px;
+  height: 52px;
+  width: 450px;
 }
 
 .submit-btn {
@@ -27,18 +31,47 @@
   border-bottom-left-radius: 0px;
   box-shadow: none;
   border: none;
-  font-size: 14px;
+  font-size: 16px;
   background-color: black;
   color: #f4f5f7;
-  height: 34.5px;
-  width: 100px;
-  font-family: fantasy;
+  height: 54.5px;
+  width: 125px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .name-input:focus { 
   outline: none;
   border: none;
   box-shadow: none;
+}
+
+.posts {
+  background-color: #004da6;
+  padding-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.single-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d66a7;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin-bottom: 1em;
+  margin-top: 1em;
+  border-radius: 5px;
+  width: 500px;
+}
+
+.single-post:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.dj-name {
+  margin-top: 0%;
 }
 
 form {

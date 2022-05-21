@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <br/>
-      <h1>DJ Name Generator</h1>
+      <h1 id='header'>DJ Name Generator</h1>
       <p>Generate DJ names for you and your friends below.</p>
       <br/>
       <form onSubmit={handleSubmit}>
@@ -66,18 +66,24 @@ function App() {
             name="name" 
             value={name}
             autofocus="autofocus"
-            placeholder="Enter a keyword such as your name"
+            placeholder="Enter a keyword like your name"
             onChange={event => setName(event.target.value)} 
           />
         </label>
         <button className="submit-btn" type="submit">Generate</button>
       </form>
+      <br/>
       {submitting &&
-       <div className="submitting">Generating DJ name...</div>
+       <div className="submitting">Generating a fly DJ name...</div>
       }
       <div className="posts">
         {posts.map((post, index) => {
-          return <p key={index}>{post.name} is {post.dj}</p>
+          return (
+            <div className='single-post'>
+              <p key={index}>Presenting <b>{post.name}</b> as... </p>
+              <h2 key={index} className="dj-name">{post.dj}</h2>
+            </div>
+          )
         })}
       </div>
     </div>
