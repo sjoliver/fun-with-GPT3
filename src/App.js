@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
+import './App.css';
+
 const { Configuration, OpenAIApi } = require("openai");
 
 function App() {
+  const [name, setName] = useState('');
   const [posts, setPosts] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
   
   const handleSubmit = (event) => { 
     event.preventDefault();
+    setSubmitting(true);
+    setName('');
 
     // construct set of key/val pairs from text field
     const formData = new FormData(event.target)
@@ -19,22 +25,23 @@ function App() {
     const openai = new OpenAIApi(configuration);
 
     openai.createCompletion("text-curie-001", {
-      // prompt: `Suggest a funny DJ name for ${formDataObj.name}`,
       prompt: `Suggest a funny DJ name 
-      name: Sonia
-      dj: DJ Slimy Spin Sonia
-      name: Fifi
-      dj: DJ Funky Fresh Fifi
-      name: Graeme
-      dj: Grizzly Graeme
-      name: ${formDataObj.name}
-      dj:`,
+        name: Sonia
+        dj: DJ Slimy Spin Sonia
+        name: Fifi
+        dj: DJ Funky Fresh Fifi
+        name: Graeme
+        dj: Grizzly Graeme
+        name: ${formDataObj.name}
+        dj:`,
       temperature: 0.8,
       max_tokens: 64,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0
     }).then((response) => {
+      setSubmitting(false);
+
       // add new posts to the beginning of the state area so that posts will be displayed newest to oldest
       setPosts((prev) => [{
         name: `${formDataObj.name}`,
@@ -48,21 +55,31 @@ function App() {
 
   return (
     <div className="App">
+      <br/>
+      <h1>DJ Name Generator</h1>
+      <p>Generate DJ names for you and your friends below.</p>
+      <br/>
       <form onSubmit={handleSubmit}>
-        <label> Who would you like to generate a DJ name for?
+        <label>
           <input 
-            type="text" 
-            name="name"
-            placeholder='Enter a name here'
+            className="name-input"
+            name="name" 
+            value={name}
+            autofocus="autofocus"
+            placeholder="Enter a keyword such as your name"
+            onChange={event => setName(event.target.value)} 
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className="submit-btn" type="submit">Generate</button>
       </form>
-      <ul>
+      {submitting &&
+       <div className="submitting">Generating DJ name...</div>
+      }
+      <div className="posts">
         {posts.map((post, index) => {
-          return <li key={index}>{post.name}: {post.dj}</li>
+          return <p key={index}>{post.name} is {post.dj}</p>
         })}
-      </ul>
+      </div>
     </div>
   );
 }
