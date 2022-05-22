@@ -1,7 +1,7 @@
 {
   "name": "fun-with-gpt3",
   "version": "0.1.0",
-  "homepage": "https://sjoliver.github.io/fun-with-GPT3",
+  "homepage": "https://sjoliver.github.io/fun-with-GPT3/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
