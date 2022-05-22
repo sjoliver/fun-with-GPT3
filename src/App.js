@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import { useForm } from "react-hook-form";
 import './App.css';
 
 const { Configuration, OpenAIApi } = require("openai");
@@ -8,7 +7,7 @@ function App() {
   const [name, setName] = useState('');
   const [posts, setPosts] = useState([]);
   const [submitting, setSubmitting] = useState(false);
-  
+
   const handleSubmit = (event) => { 
     event.preventDefault();
     setSubmitting(true);
@@ -75,14 +74,14 @@ function App() {
       </form>
       <br/>
       {submitting &&
-       <div className="submitting">Generating a fly DJ name...</div>
+       <p className="submitting">Generating a fly DJ name...</p>
       }
       <div className="posts">
         {posts.map((post, index) => {
           return (
             <div key={index} className='single-post'>
               <p>Presenting <b>{post.name}</b> as... </p>
-              <h2 className="dj-name">{post.dj}</h2>
+              <p className="dj-name"><b>{post.dj}</b></p>
             </div>
           )
         })}
