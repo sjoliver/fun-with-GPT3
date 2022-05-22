@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useForm } from "react-hook-form";
 import './App.css';
 
 const { Configuration, OpenAIApi } = require("openai");
@@ -65,7 +66,7 @@ function App() {
             className="name-input"
             name="name" 
             value={name}
-            autofocus="autofocus"
+            autoFocus="autofocus"
             placeholder="Enter a keyword like your name"
             onChange={event => setName(event.target.value)} 
           />
@@ -79,9 +80,9 @@ function App() {
       <div className="posts">
         {posts.map((post, index) => {
           return (
-            <div className='single-post'>
-              <p key={index}>Presenting <b>{post.name}</b> as... </p>
-              <h2 key={index} className="dj-name">{post.dj}</h2>
+            <div key={index} className='single-post'>
+              <p>Presenting <b>{post.name}</b> as... </p>
+              <h2 className="dj-name">{post.dj}</h2>
             </div>
           )
         })}
