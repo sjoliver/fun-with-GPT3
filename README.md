@@ -7,4 +7,4 @@ GPT-3 can process plain text prompts and produce outputs that are hard to distin
 ## Live Server
 App has been deployed using Netlify, it can be accessed here: https://main--zesty-conkies-dba9fb.netlify.app/
 
-![DJ Name Generator Landing Page]()
+![DJ Name Generator Landing Page](https://github.com/sjoliver/fun-with-GPT3/blob/main/public/dj-name-generator.png?raw=true)
